@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TestMapper">
+
+    <resultMap type="io.github.bincool.entity.test.test.Test" id="testResultMap">
+        <id column="ID" property="id"/>
+        <result column="stringTest" property="stringTest"/>
+        <result column="integerTest" property="integerTest"/>
+        <result column="doubleTest" property="doubleTest"/>
+        <result column="textTest" property="textTest"/>
+        <result column="booleanTest" property="booleanTest"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="extendColumn1" property="extendColumn1"/>
+        <result column="extendColumn2" property="extendColumn2"/>
+        <result column="extendColumn3" property="extendColumn3"/>
+    </resultMap>
+
+    <!-- 代码生成-新增一条记录 -->
+    <insert id="save" parameterType="io.github.bincool.entity.test.test.Test"  useGeneratedKeys="true" keyProperty="id">
+        insert into T_TEST
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="stringTest != null and stringTest !=''">
+                STRING_TEST ,
+            </if>
+            <if test="integerTest != null">
+                INTEGER_TEST ,
+            </if>
+            <if test="doubleTest != null">
+                DOUBLE_TEST ,
+            </if>
+            <if test="textTest != null and textTest !=''">
+                TEXT_TEST ,
+            </if>
+            <if test="booleanTest != null">
+                BOOLEAN_TEST ,
+            </if>
+            CREATE_TIME ,
+            UPDATE_TIME ,
+            <if test="extendColumn1 != null and extendColumn1 !=''">
+                EXTEND_COLUMN1 ,
+            </if>
+            <if test="extendColumn2 != null and extendColumn2 !=''">
+                EXTEND_COLUMN2 ,
+            </if>
+            <if test="extendColumn3 != null and extendColumn3 !=''">
+                EXTEND_COLUMN3 ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="stringTest != null and stringTest !=''">
+                #{stringTest},
+            </if>
+            <if test="integerTest != null">
+                ${integerTest},
+            </if>
+            <if test="doubleTest != null">
+                ${doubleTest},
+            </if>
+            <if test="textTest != null and textTest !=''">
+                #{textTest},
+            </if>
+            <if test="booleanTest != null">
+                ${booleanTest},
+            </if>
+            CURRENT_TIMESTAMP,
+            CURRENT_TIMESTAMP,
+            <if test="extendColumn1 != null and extendColumn1 !=''">
+                #{extendColumn1},
+            </if>
+            <if test="extendColumn2 != null and extendColumn2 !=''">
+                #{extendColumn2},
+            </if>
+            <if test="extendColumn3 != null and extendColumn3 !=''">
+                #{extendColumn3},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 代码生成-根据id删除一条记录 -->
+    <delete id="delete" parameterType="io.github.bincool.entity.test.test.Test">
+        delete from T_TEST
+        where
+        ID = #{id}
+    </delete>
+
+    <!-- 代码生成-根据id修改一条记录 -->
+    <update id="edit" parameterType="io.github.bincool.entity.test.test.Test">
+        update T_TEST
+        set
+        <trim suffixOverrides=",">
+            <if test="stringTest != null and stringTest !=''">
+                STRING_TEST = #{stringTest},
+            </if>
+            <if test="integerTest != null">
+                INTEGER_TEST = ${integerTest},
+            </if>
+            <if test="doubleTest != null">
+                DOUBLE_TEST = ${doubleTest},
+            </if>
+            <if test="textTest != null and textTest !=''">
+                TEXT_TEST = #{textTest},
+            </if>
+            <if test="booleanTest != null">
+                BOOLEAN_TEST = ${booleanTest},
+            </if>
+            <if test="createTime != null and createTime !=''">
+                CREATE_TIME = #{createTime},
+            </if>
+            UPDATE_TIME = CURRENT_TIMESTAMP,
+            <if test="extendColumn1 != null and extendColumn1 !=''">
+                EXTEND_COLUMN1 = #{extendColumn1},
+            </if>
+            <if test="extendColumn2 != null and extendColumn2 !=''">
+                EXTEND_COLUMN2 = #{extendColumn2},
+            </if>
+            <if test="extendColumn3 != null and extendColumn3 !=''">
+                EXTEND_COLUMN3 = #{extendColumn3},
+            </if>
+        </trim>
+        where
+        ID = #{id}
+    </update>
+
+    <!-- 代码生成-根据id查询一条记录 -->
+    <select id="selectOne" parameterType="io.github.bincool.entity.test.test.Test" resultType="io.github.bincool.entity.test.test.Test">
+        select
+        ID as id,
+        <trim suffixOverrides=",">
+            STRING_TEST as stringTest ,
+            INTEGER_TEST as integerTest ,
+            DOUBLE_TEST as doubleTest ,
+            TEXT_TEST as textTest ,
+            BOOLEAN_TEST as booleanTest ,
+            CREATE_TIME as createTime ,
+            UPDATE_TIME as updateTime ,
+            EXTEND_COLUMN1 as extendColumn1 ,
+            EXTEND_COLUMN2 as extendColumn2 ,
+            EXTEND_COLUMN3 as extendColumn3 ,
+        </trim>
+        from
+        T_TEST
+        where
+        ID = #{id}
+    </select>
+
+    <!-- 代码生成-查询所有记录列表 -->
+    <select id="listAll" parameterType="io.github.bincool.entity.test.test.Test" resultType="io.github.bincool.entity.test.test.Test">
+        select
+        ID as id,
+        <trim suffixOverrides=",">
+            STRING_TEST as stringTest,
+            INTEGER_TEST as integerTest,
+            DOUBLE_TEST as doubleTest,
+            TEXT_TEST as textTest,
+            BOOLEAN_TEST as booleanTest,
+            CREATE_TIME as createTime,
+            UPDATE_TIME as updateTime,
+            EXTEND_COLUMN1 as extendColumn1,
+            EXTEND_COLUMN2 as extendColumn2,
+            EXTEND_COLUMN3 as extendColumn3,
+        </trim>
+        from
+        T_TEST
+        <where>
+            <if test="stringTest != null and stringTest !='' ">
+                and STRING_TEST = #{stringTest}
+            </if>
+            <if test="integerTest != null">
+                and INTEGER_TEST = ${integerTest}
+            </if>
+            <if test="doubleTest != null">
+                and DOUBLE_TEST = ${doubleTest}
+            </if>
+            <if test="textTest != null and textTest !='' ">
+                and TEXT_TEST = #{textTest}
+            </if>
+            <if test="booleanTest != null">
+                and BOOLEAN_TEST = ${booleanTest}
+            </if>
+            <if test="createTime != null and createTime !='' ">
+                and CREATE_TIME = #{createTime}
+            </if>
+            <if test="updateTime != null and updateTime !='' ">
+                and UPDATE_TIME = #{updateTime}
+            </if>
+            <if test="extendColumn1 != null and extendColumn1 !='' ">
+                and EXTEND_COLUMN1 = #{extendColumn1}
+            </if>
+            <if test="extendColumn2 != null and extendColumn2 !='' ">
+                and EXTEND_COLUMN2 = #{extendColumn2}
+            </if>
+            <if test="extendColumn3 != null and extendColumn3 !='' ">
+                and EXTEND_COLUMN3 = #{extendColumn3}
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <!-- 代码生成-批量删除表记录 -->
+    <delete id="deleteAll" parameterType="String">
+        delete from T_TEST
+        where
+        ID in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 自定义sql- -->
+
+    <!-- 自定义sql- -->
+
+</mapper>
